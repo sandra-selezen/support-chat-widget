@@ -1,4 +1,10 @@
-import { type CSSProperties, type ReactNode, useState } from "react";
+import {
+  type CSSProperties,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import "./support-chat-widget.css";
 
 export type User = {
@@ -117,12 +123,15 @@ export const SupportChatWidget = ({
     if (typeof window === "undefined") return null;
     return localStorage.getItem(STORAGE_KEY);
   });
-
   const [emailValue, setEmailValue] = useState("");
+  const [emailError, setEmailError] = useState<string | null>(null);
+
   const [messageValue, setMessageValue] = useState("");
   const [internalMessages, setInternalMessages] =
     useState<Message[]>(defaultMessages);
   const [isSending, setIsSending] = useState(false);
+
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const isControlled = messages !== undefined;
   const finalMessages = messages ?? internalMessages;
@@ -130,6 +139,8 @@ export const SupportChatWidget = ({
   const hasUserEmail = Boolean(user?.email);
   const hasGuestEmail = Boolean(email);
   const canChat = hasUserEmail || hasGuestEmail;
+  const isValidEmail = (value: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
   const mergedLabels = {
     title: labels?.title ?? "Support chat",
@@ -157,8 +168,7 @@ export const SupportChatWidget = ({
     "--sc-user-bubble": theme?.colors?.userBubble ?? "#006168",
     "--sc-user-bubble-text": theme?.colors?.userBubbleText ?? "#ffffff",
     "--sc-support-bubble": theme?.colors?.supportBubble ?? "#f2f4f7",
-    "--sc-support-bubble-text":
-      theme?.colors?.supportBubbleText ?? "#101828",
+    "--sc-support-bubble-text": theme?.colors?.supportBubbleText ?? "#101828",
     "--sc-input-background": theme?.colors?.inputBackground ?? "#ffffff",
     "--sc-input-text": theme?.colors?.inputText ?? "#101828",
     "--sc-launcher": theme?.colors?.launcherBackground ?? "#006168",
@@ -166,14 +176,29 @@ export const SupportChatWidget = ({
     "--sc-focus-ring": theme?.colors?.focusRing ?? "rgba(0, 97, 104, 0.12)",
   } as CSSProperties;
 
+  useEffect(() => {
+    if (!isOpen || !canChat) return;
+
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+    });
+  }, [finalMessages, isTyping, isOpen, canChat]);
+
   const handleSaveEmail = () => {
     const trimmedEmail = emailValue.trim();
 
     if (!trimmedEmail) return;
 
+    if (!isValidEmail(trimmedEmail)) {
+      setEmailError("Please enter a valid email address");
+      return;
+    }
+
     localStorage.setItem(STORAGE_KEY, trimmedEmail);
     setEmail(trimmedEmail);
     setEmailValue("");
+    setEmailError(null);
   };
 
   const handleSendMessage = async () => {
@@ -226,14 +251,11 @@ export const SupportChatWidget = ({
 
             <button
               type="button"
-              className={cn(
-                "sc-header-close",
-                classNames?.headerCloseButton,
-              )}
+              className={cn("sc-header-close", classNames?.headerCloseButton)}
               onClick={() => setIsOpen(false)}
               aria-label="Close support chat"
             >
-              {icons?.close ?? "×"}
+              {icons?.close ?? "x"}
             </button>
           </div>
 
@@ -257,10 +279,13 @@ export const SupportChatWidget = ({
                     placeholder={mergedLabels.emailPlaceholder}
                   />
 
+                  {emailError && <p className="sc-email-error">{emailError}</p>}
+
                   <button
                     type="button"
                     className={cn("sc-email-button", classNames?.emailButton)}
                     onClick={handleSaveEmail}
+                    // disabled={email === "" || emailError}
                   >
                     {mergedLabels.emailButton}
                   </button>
@@ -277,10 +302,7 @@ export const SupportChatWidget = ({
                       "sc-message",
                       message.sender === "user"
                         ? cn("sc-message--user", classNames?.messageUser)
-                        : cn(
-                            "sc-message--support",
-                            classNames?.messageSupport,
-                          ),
+                        : cn("sc-message--support", classNames?.messageSupport),
                     )}
                   >
                     {message.text}
@@ -296,10 +318,7 @@ export const SupportChatWidget = ({
                     )}
                   >
                     <div
-                      className={cn(
-                        "sc-typing",
-                        classNames?.typingIndicator,
-                      )}
+                      className={cn("sc-typing", classNames?.typingIndicator)}
                     >
                       <span />
                       <span />
@@ -307,6 +326,8 @@ export const SupportChatWidget = ({
                     </div>
                   </div>
                 )}
+
+                <div ref={messagesEndRef} />
               </div>
             )}
           </div>
@@ -344,14 +365,16 @@ export const SupportChatWidget = ({
         </div>
       )}
 
-      <button
-        type="button"
-        className={cn("sc-launcher", classNames?.launcher)}
-        onClick={() => setIsOpen((prev) => !prev)}
-        aria-label={isOpen ? "Close support chat" : "Open support chat"}
-      >
-        {isOpen ? icons?.close ?? "×" : icons?.open ?? "💬"}
-      </button>
+      {!isOpen && (
+        <button
+          type="button"
+          className={cn("sc-launcher", classNames?.launcher)}
+          onClick={() => setIsOpen(true)}
+          aria-label="Open support chat"
+        >
+          {icons?.open ?? "💬"}
+        </button>
+      )}
     </div>
   );
 };

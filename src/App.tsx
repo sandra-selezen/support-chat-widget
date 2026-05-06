@@ -1,4 +1,5 @@
 import { SupportChatWidget } from "./SupportChatWidget";
+import "./support-chat-widget.css";
 
 function App() {
   return (
