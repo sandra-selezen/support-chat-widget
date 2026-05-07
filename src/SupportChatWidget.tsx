@@ -201,6 +201,8 @@ export const SupportChatWidget = ({
     setEmail(trimmedEmail);
     setEmailValue("");
     setEmailError(null);
+
+    onEmailSubmit?.(trimmedEmail);
   };
 
   const handleResetEmail = () => {

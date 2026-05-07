@@ -42,6 +42,9 @@ function App() {
           close: "✕",
           send: "➤",
         }}
+        onEmailSubmit={(email) => {
+          console.log("Guest email:", email);
+        }}
         onSendMessage={async ({ message, email }) => {
           console.log("Sending message...", message, email);
 

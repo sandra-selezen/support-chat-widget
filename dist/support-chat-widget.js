@@ -1,9 +1,9 @@
-import { useState as e } from "react";
+import { useEffect as e, useRef as t, useState as n } from "react";
 //#region \0rolldown/runtime.js
-var t = (e, t) => () => (t || (e((t = { exports: {} }).exports, t), e = null), t.exports), n = /* @__PURE__ */ ((e) => typeof require < "u" ? require : typeof Proxy < "u" ? new Proxy(e, { get: (e, t) => (typeof require < "u" ? require : e)[t] }) : e)(function(e) {
+var r = (e, t) => () => (t || (e((t = { exports: {} }).exports, t), e = null), t.exports), i = /* @__PURE__ */ ((e) => typeof require < "u" ? require : typeof Proxy < "u" ? new Proxy(e, { get: (e, t) => (typeof require < "u" ? require : e)[t] }) : e)(function(e) {
 	if (typeof require < "u") return require.apply(this, arguments);
 	throw Error("Calling `require` for \"" + e + "\" in an environment that doesn't expose the `require` function. See https://rolldown.rs/in-depth/bundling-cjs#require-external-modules for more details.");
-}), r = /* @__PURE__ */ t(((e) => {
+}), a = /* @__PURE__ */ r(((e) => {
 	var t = Symbol.for("react.transitional.element"), n = Symbol.for("react.fragment");
 	function r(e, n, r) {
 		var i = null;
@@ -18,7 +18,7 @@ var t = (e, t) => () => (t || (e((t = { exports: {} }).exports, t), e = null), t
 		};
 	}
 	e.Fragment = n, e.jsx = r, e.jsxs = r;
-})), i = /* @__PURE__ */ t(((e) => {
+})), o = /* @__PURE__ */ r(((e) => {
 	process.env.NODE_ENV !== "production" && (function() {
 		function t(e) {
 			if (e == null) return null;
@@ -48,20 +48,20 @@ var t = (e, t) => () => (t || (e((t = { exports: {} }).exports, t), e = null), t
 			}
 			return null;
 		}
-		function r(e) {
+		function n(e) {
 			return "" + e;
 		}
-		function i(e) {
+		function r(e) {
 			try {
-				r(e);
+				n(e);
 				var t = !1;
 			} catch {
 				t = !0;
 			}
 			if (t) {
 				t = console;
-				var n = t.error, i = typeof Symbol == "function" && Symbol.toStringTag && e[Symbol.toStringTag] || e.constructor.name || "Object";
-				return n.call(t, "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.", i), r(e);
+				var r = t.error, i = typeof Symbol == "function" && Symbol.toStringTag && e[Symbol.toStringTag] || e.constructor.name || "Object";
+				return r.call(t, "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.", i), n(e);
 			}
 		}
 		function a(e) {
@@ -137,7 +137,7 @@ var t = (e, t) => () => (t || (e((t = { exports: {} }).exports, t), e = null), t
 				value: a
 			}), Object.freeze && (Object.freeze(e.props), Object.freeze(e)), e;
 		}
-		function f(e, n, r, a, s, u) {
+		function f(e, n, i, a, s, u) {
 			var f = n.children;
 			if (f !== void 0) if (a) if (M(f)) {
 				for (a = 0; a < f.length; a++) p(f[a]);
@@ -151,9 +151,9 @@ var t = (e, t) => () => (t || (e((t = { exports: {} }).exports, t), e = null), t
 				});
 				a = 0 < m.length ? "{key: someKey, " + m.join(": ..., ") + ": ...}" : "{key: someKey}", R[f + a] || (m = 0 < m.length ? "{" + m.join(": ..., ") + ": ...}" : "{}", console.error("A props object containing a \"key\" prop is being spread into JSX:\n  let props = %s;\n  <%s {...props} />\nReact keys must be passed directly to JSX without using spread:\n  let props = %s;\n  <%s key={someKey} {...props} />", a, f, m, f), R[f + a] = !0);
 			}
-			if (f = null, r !== void 0 && (i(r), f = "" + r), c(n) && (i(n.key), f = "" + n.key), "key" in n) for (var h in r = {}, n) h !== "key" && (r[h] = n[h]);
-			else r = n;
-			return f && l(r, typeof e == "function" ? e.displayName || e.name || "Unknown" : e), d(e, f, r, o(), s, u);
+			if (f = null, i !== void 0 && (r(i), f = "" + i), c(n) && (r(n.key), f = "" + n.key), "key" in n) for (var h in i = {}, n) h !== "key" && (i[h] = n[h]);
+			else i = n;
+			return f && l(i, typeof e == "function" ? e.displayName || e.name || "Unknown" : e), d(e, f, i, o(), s, u);
 		}
 		function p(e) {
 			m(e) ? e._store && (e._store.validated = 1) : typeof e == "object" && e && e.$$typeof === D && (e._payload.status === "fulfilled" ? m(e._payload.value) && e._payload.value._store && (e._payload.value._store.validated = 1) : e._store && (e._store.validated = 1));
@@ -161,7 +161,7 @@ var t = (e, t) => () => (t || (e((t = { exports: {} }).exports, t), e = null), t
 		function m(e) {
 			return typeof e == "object" && !!e && e.$$typeof === g;
 		}
-		var h = n("react"), g = Symbol.for("react.transitional.element"), _ = Symbol.for("react.portal"), v = Symbol.for("react.fragment"), y = Symbol.for("react.strict_mode"), b = Symbol.for("react.profiler"), x = Symbol.for("react.consumer"), S = Symbol.for("react.context"), C = Symbol.for("react.forward_ref"), w = Symbol.for("react.suspense"), T = Symbol.for("react.suspense_list"), E = Symbol.for("react.memo"), D = Symbol.for("react.lazy"), O = Symbol.for("react.activity"), k = Symbol.for("react.client.reference"), A = h.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, j = Object.prototype.hasOwnProperty, M = Array.isArray, N = console.createTask ? console.createTask : function() {
+		var h = i("react"), g = Symbol.for("react.transitional.element"), _ = Symbol.for("react.portal"), v = Symbol.for("react.fragment"), y = Symbol.for("react.strict_mode"), b = Symbol.for("react.profiler"), x = Symbol.for("react.consumer"), S = Symbol.for("react.context"), C = Symbol.for("react.forward_ref"), w = Symbol.for("react.suspense"), T = Symbol.for("react.suspense_list"), E = Symbol.for("react.memo"), D = Symbol.for("react.lazy"), O = Symbol.for("react.activity"), k = Symbol.for("react.client.reference"), A = h.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, j = Object.prototype.hasOwnProperty, M = Array.isArray, N = console.createTask ? console.createTask : function() {
 			return null;
 		};
 		h = { react_stack_bottom_frame: function(e) {
@@ -176,164 +176,207 @@ var t = (e, t) => () => (t || (e((t = { exports: {} }).exports, t), e = null), t
 			return f(e, t, n, !0, r ? Error("react-stack-top-frame") : I, r ? N(a(e)) : L);
 		};
 	})();
-})), a = (/* @__PURE__ */ t(((e, t) => {
-	process.env.NODE_ENV === "production" ? t.exports = r() : t.exports = i();
-})))(), o = "support-chat-email", s = [{
+})), s = (/* @__PURE__ */ r(((e, t) => {
+	process.env.NODE_ENV === "production" ? t.exports = a() : t.exports = o();
+})))(), c = "support-chat-email", l = [{
 	id: "welcome",
 	text: "Hi! How can we help you today?",
 	sender: "support"
-}], c = (...e) => e.filter(Boolean).join(" "), l = ({ user: t = null, messages: n, isTyping: r = !1, onTyping: i, onSendMessage: l, theme: u, classNames: d, labels: f, icons: p }) => {
-	let [m, h] = e(!1), [g, _] = e(() => typeof window > "u" ? null : localStorage.getItem(o)), [v, y] = e(""), [b, x] = e(""), [S, C] = e(s), [w, T] = e(!1), E = n !== void 0, D = n ?? S, O = !!t?.email || !!g, k = {
-		title: f?.title ?? "Support chat",
-		subtitle: f?.subtitle ?? "We usually reply in a few minutes",
-		emailTitle: f?.emailTitle ?? "Before we start",
-		emailDescription: f?.emailDescription ?? "Please leave your email so our support team can contact you.",
-		emailPlaceholder: f?.emailPlaceholder ?? "Enter your email",
-		emailButton: f?.emailButton ?? "Continue",
-		messagePlaceholder: f?.messagePlaceholder ?? "Type your message...",
-		sendButton: f?.sendButton ?? "Send"
-	}, A = u?.position ?? "bottom-right", j = {
-		"--sc-primary": u?.colors?.primary ?? "#006168",
-		"--sc-primary-text": u?.colors?.primaryText ?? "#ffffff",
-		"--sc-background": u?.colors?.background ?? "#ffffff",
-		"--sc-surface": u?.colors?.surface ?? "#ffffff",
-		"--sc-text": u?.colors?.text ?? "#101828",
-		"--sc-muted": u?.colors?.mutedText ?? "#667085",
-		"--sc-border": u?.colors?.border ?? "#eaecf0",
-		"--sc-user-bubble": u?.colors?.userBubble ?? "#006168",
-		"--sc-user-bubble-text": u?.colors?.userBubbleText ?? "#ffffff",
-		"--sc-support-bubble": u?.colors?.supportBubble ?? "#f2f4f7",
-		"--sc-support-bubble-text": u?.colors?.supportBubbleText ?? "#101828",
-		"--sc-input-background": u?.colors?.inputBackground ?? "#ffffff",
-		"--sc-input-text": u?.colors?.inputText ?? "#101828",
-		"--sc-launcher": u?.colors?.launcherBackground ?? "#006168",
-		"--sc-launcher-text": u?.colors?.launcherText ?? "#ffffff",
-		"--sc-focus-ring": u?.colors?.focusRing ?? "rgba(0, 97, 104, 0.12)"
-	}, M = () => {
-		let e = v.trim();
-		e && (localStorage.setItem(o, e), _(e), y(""));
-	}, N = async () => {
-		let e = b.trim();
-		if (!e || w) return;
-		let n = {
+}], u = (...e) => e.filter(Boolean).join(" "), d = ({ user: r = null, messages: i, isTyping: a = !1, onEmailSubmit: o, onTyping: d, onSendMessage: f, theme: p, classNames: m, labels: h, icons: g }) => {
+	let [_, v] = n(!1), [y, b] = n(() => typeof window > "u" ? null : localStorage.getItem(c)), [x, S] = n(""), [C, w] = n(null), [T, E] = n(""), [D, O] = n(l), [k, A] = n(!1), j = t(null), M = i !== void 0, N = i ?? D, P = !!r?.email, F = !!y, I = P || F, L = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e), R = {
+		title: h?.title ?? "Support chat",
+		subtitle: h?.subtitle ?? "We usually reply in a few minutes",
+		emailTitle: h?.emailTitle ?? "Before we start",
+		emailDescription: h?.emailDescription ?? "Please leave your email so our support team can contact you.",
+		emailPlaceholder: h?.emailPlaceholder ?? "Enter your email",
+		emailButton: h?.emailButton ?? "Continue",
+		messagePlaceholder: h?.messagePlaceholder ?? "Type your message...",
+		sendButton: h?.sendButton ?? "Send"
+	}, z = p?.position ?? "bottom-right", B = {
+		"--sc-primary": p?.colors?.primary ?? "#006168",
+		"--sc-primary-text": p?.colors?.primaryText ?? "#ffffff",
+		"--sc-background": p?.colors?.background ?? "#ffffff",
+		"--sc-surface": p?.colors?.surface ?? "#ffffff",
+		"--sc-text": p?.colors?.text ?? "#101828",
+		"--sc-muted": p?.colors?.mutedText ?? "#667085",
+		"--sc-border": p?.colors?.border ?? "#eaecf0",
+		"--sc-user-bubble": p?.colors?.userBubble ?? "#006168",
+		"--sc-user-bubble-text": p?.colors?.userBubbleText ?? "#ffffff",
+		"--sc-support-bubble": p?.colors?.supportBubble ?? "#f2f4f7",
+		"--sc-support-bubble-text": p?.colors?.supportBubbleText ?? "#101828",
+		"--sc-input-background": p?.colors?.inputBackground ?? "#ffffff",
+		"--sc-input-text": p?.colors?.inputText ?? "#101828",
+		"--sc-launcher": p?.colors?.launcherBackground ?? "#006168",
+		"--sc-launcher-text": p?.colors?.launcherText ?? "#ffffff",
+		"--sc-focus-ring": p?.colors?.focusRing ?? "rgba(0, 97, 104, 0.12)"
+	};
+	e(() => {
+		!_ || !I || j.current?.scrollIntoView({
+			behavior: "smooth",
+			block: "end"
+		});
+	}, [
+		N,
+		a,
+		_,
+		I
+	]);
+	let V = () => {
+		let e = x.trim();
+		if (e) {
+			if (!L(e)) {
+				w("Please enter a valid email address");
+				return;
+			}
+			localStorage.setItem(c, e), b(e), S(""), w(null), o?.(e);
+		}
+	}, H = () => {
+		localStorage.removeItem(c), b(null), S(""), O(l);
+	}, U = async () => {
+		let e = T.trim();
+		if (!e || k) return;
+		let t = {
 			id: crypto.randomUUID(),
 			text: e,
 			sender: "user"
 		};
-		E || C((e) => [...e, n]), x(""), T(!0);
+		M || O((e) => [...e, t]), E(""), A(!0);
 		try {
-			await l?.({
+			await f?.({
 				message: e,
-				email: t?.email ?? g ?? void 0,
-				user: t
+				email: r?.email ?? y ?? void 0,
+				user: r
 			});
 		} finally {
-			T(!1);
+			A(!1);
 		}
 	};
-	return /* @__PURE__ */ (0, a.jsxs)("div", {
-		className: c("sc-widget", A === "bottom-left" ? "sc-widget--bottom-left" : "sc-widget--bottom-right", d?.root),
-		style: j,
-		children: [m && /* @__PURE__ */ (0, a.jsxs)("div", {
-			className: c("sc-window", d?.window),
+	return /* @__PURE__ */ (0, s.jsxs)("div", {
+		className: u("sc-widget", z === "bottom-left" ? "sc-widget--bottom-left" : "sc-widget--bottom-right", m?.root),
+		style: B,
+		children: [_ && /* @__PURE__ */ (0, s.jsxs)("div", {
+			className: u("sc-window", m?.window),
 			children: [
-				/* @__PURE__ */ (0, a.jsxs)("div", {
-					className: c("sc-header", d?.header),
-					children: [/* @__PURE__ */ (0, a.jsxs)("div", { children: [/* @__PURE__ */ (0, a.jsx)("h3", {
-						className: "sc-title",
-						children: k.title
-					}), /* @__PURE__ */ (0, a.jsx)("p", {
-						className: "sc-subtitle",
-						children: k.subtitle
-					})] }), /* @__PURE__ */ (0, a.jsx)("button", {
+				/* @__PURE__ */ (0, s.jsxs)("div", {
+					className: u("sc-header", m?.header),
+					children: [/* @__PURE__ */ (0, s.jsxs)("div", { children: [
+						/* @__PURE__ */ (0, s.jsx)("h3", {
+							className: "sc-title",
+							children: R.title
+						}),
+						/* @__PURE__ */ (0, s.jsx)("p", {
+							className: "sc-subtitle",
+							children: R.subtitle
+						}),
+						F && /* @__PURE__ */ (0, s.jsx)("button", {
+							type: "button",
+							className: "sc-change-email",
+							onClick: H,
+							children: "Change email"
+						})
+					] }), /* @__PURE__ */ (0, s.jsx)("button", {
 						type: "button",
-						className: c("sc-header-close", d?.headerCloseButton),
-						onClick: () => h(!1),
+						className: u("sc-header-close", m?.headerCloseButton),
+						onClick: () => v(!1),
 						"aria-label": "Close support chat",
-						children: p?.close ?? "×"
+						children: g?.close ?? "x"
 					})]
 				}),
-				/* @__PURE__ */ (0, a.jsxs)("div", {
-					className: c("sc-body", d?.body),
-					children: [!O && /* @__PURE__ */ (0, a.jsxs)("div", {
-						className: c("sc-email-card", d?.emailCard),
+				/* @__PURE__ */ (0, s.jsxs)("div", {
+					className: u("sc-body", m?.body),
+					children: [!I && /* @__PURE__ */ (0, s.jsxs)("div", {
+						className: u("sc-email-card", m?.emailCard),
 						children: [
-							/* @__PURE__ */ (0, a.jsx)("p", {
+							/* @__PURE__ */ (0, s.jsx)("p", {
 								className: "sc-email-title",
-								children: k.emailTitle
+								children: R.emailTitle
 							}),
-							/* @__PURE__ */ (0, a.jsx)("p", {
+							/* @__PURE__ */ (0, s.jsx)("p", {
 								className: "sc-email-description",
-								children: k.emailDescription
+								children: R.emailDescription
 							}),
-							/* @__PURE__ */ (0, a.jsxs)("div", {
+							/* @__PURE__ */ (0, s.jsxs)("div", {
 								className: "sc-email-form",
-								children: [/* @__PURE__ */ (0, a.jsx)("input", {
-									value: v,
-									onChange: (e) => y(e.target.value),
-									onKeyDown: (e) => {
-										e.key === "Enter" && M();
-									},
-									className: c("sc-email-input", d?.emailInput),
-									type: "email",
-									placeholder: k.emailPlaceholder
-								}), /* @__PURE__ */ (0, a.jsx)("button", {
-									type: "button",
-									className: c("sc-email-button", d?.emailButton),
-									onClick: M,
-									children: k.emailButton
-								})]
-							})
-						]
-					}), O && /* @__PURE__ */ (0, a.jsxs)("div", {
-						className: c("sc-messages", d?.messages),
-						children: [D.map((e) => /* @__PURE__ */ (0, a.jsx)("div", {
-							className: c("sc-message", e.sender === "user" ? c("sc-message--user", d?.messageUser) : c("sc-message--support", d?.messageSupport)),
-							children: e.text
-						}, e.id)), r && /* @__PURE__ */ (0, a.jsx)("div", {
-							className: c("sc-message", "sc-message--support", d?.messageSupport),
-							children: /* @__PURE__ */ (0, a.jsxs)("div", {
-								className: c("sc-typing", d?.typingIndicator),
 								children: [
-									/* @__PURE__ */ (0, a.jsx)("span", {}),
-									/* @__PURE__ */ (0, a.jsx)("span", {}),
-									/* @__PURE__ */ (0, a.jsx)("span", {})
+									/* @__PURE__ */ (0, s.jsx)("input", {
+										value: x,
+										onChange: (e) => S(e.target.value),
+										onKeyDown: (e) => {
+											e.key === "Enter" && V();
+										},
+										className: u("sc-email-input", m?.emailInput),
+										type: "email",
+										placeholder: R.emailPlaceholder
+									}),
+									C && /* @__PURE__ */ (0, s.jsx)("p", {
+										className: "sc-email-error",
+										children: C
+									}),
+									/* @__PURE__ */ (0, s.jsx)("button", {
+										type: "button",
+										className: u("sc-email-button", m?.emailButton),
+										onClick: V,
+										children: R.emailButton
+									})
 								]
 							})
-						})]
+						]
+					}), I && /* @__PURE__ */ (0, s.jsxs)("div", {
+						className: u("sc-messages", m?.messages),
+						children: [
+							N.map((e) => /* @__PURE__ */ (0, s.jsx)("div", {
+								className: u("sc-message", e.sender === "user" ? u("sc-message--user", m?.messageUser) : u("sc-message--support", m?.messageSupport)),
+								children: e.text
+							}, e.id)),
+							a && /* @__PURE__ */ (0, s.jsx)("div", {
+								className: u("sc-message", "sc-message--support", m?.messageSupport),
+								children: /* @__PURE__ */ (0, s.jsxs)("div", {
+									className: u("sc-typing", m?.typingIndicator),
+									children: [
+										/* @__PURE__ */ (0, s.jsx)("span", {}),
+										/* @__PURE__ */ (0, s.jsx)("span", {}),
+										/* @__PURE__ */ (0, s.jsx)("span", {})
+									]
+								})
+							}),
+							/* @__PURE__ */ (0, s.jsx)("div", { ref: j })
+						]
 					})]
 				}),
-				O && /* @__PURE__ */ (0, a.jsxs)("div", {
-					className: c("sc-footer", d?.footer),
-					children: [/* @__PURE__ */ (0, a.jsx)("textarea", {
-						value: b,
+				I && /* @__PURE__ */ (0, s.jsxs)("div", {
+					className: u("sc-footer", m?.footer),
+					children: [/* @__PURE__ */ (0, s.jsx)("textarea", {
+						value: T,
 						onChange: (e) => {
-							x(e.target.value), i?.();
+							E(e.target.value), d?.();
 						},
 						onKeyDown: (e) => {
-							e.key === "Enter" && !e.shiftKey && (e.preventDefault(), N());
+							e.key === "Enter" && !e.shiftKey && (e.preventDefault(), U());
 						},
-						className: c("sc-message-input", d?.messageInput),
-						placeholder: k.messagePlaceholder,
+						className: u("sc-message-input", m?.messageInput),
+						placeholder: R.messagePlaceholder,
 						rows: 1
-					}), /* @__PURE__ */ (0, a.jsx)("button", {
+					}), /* @__PURE__ */ (0, s.jsx)("button", {
 						type: "button",
-						className: c("sc-send-button", d?.sendButton),
-						onClick: N,
-						disabled: !b.trim() || w,
-						"aria-label": "Send message",
-						children: p?.send ?? k.sendButton
+						className: u("sc-send-button", m?.sendButton),
+						onClick: U,
+						disabled: !T.trim() || k,
+						"aria-label": k ? "Sending message" : "Send message",
+						children: k ? /* @__PURE__ */ (0, s.jsx)("span", {
+							className: "sc-send-spinner",
+							"aria-hidden": "true"
+						}) : g?.send ?? R.sendButton
 					})]
 				})
 			]
-		}), /* @__PURE__ */ (0, a.jsx)("button", {
+		}), !_ && /* @__PURE__ */ (0, s.jsx)("button", {
 			type: "button",
-			className: c("sc-launcher", d?.launcher),
-			onClick: () => h((e) => !e),
-			"aria-label": m ? "Close support chat" : "Open support chat",
-			children: m ? p?.close ?? "×" : p?.open ?? "💬"
+			className: u("sc-launcher", m?.launcher),
+			onClick: () => v(!0),
+			"aria-label": "Open support chat",
+			children: g?.open ?? "💬"
 		})]
 	});
 };
 //#endregion
-export { l as SupportChatWidget };
+export { d as SupportChatWidget };
