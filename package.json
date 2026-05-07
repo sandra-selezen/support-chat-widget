@@ -2,13 +2,13 @@
   "name": "support-chat-widget",
   "version": "0.0.1",
   "type": "module",
-  "main": "dist/support-chat-widget.umd.cjs",
+  "main": "dist/support-chat-widget.js",
   "module": "dist/support-chat-widget.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "files": ["dist", "README.md"],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build && tsc -p tsconfig.build.json && cp src/support-chat-widget.css dist/support-chat-widget.css",
     "lint": "eslint .",
     "preview": "vite preview"
   },
