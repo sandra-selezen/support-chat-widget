@@ -81,6 +81,7 @@ export type SupportChatWidgetProps = {
   user?: User | null;
   messages?: Message[];
   isTyping?: boolean;
+  onEmailSubmit?: (email: string) => void;
   onTyping?: () => void;
   onSendMessage?: (params: {
     message: string;
@@ -110,6 +111,7 @@ export const SupportChatWidget = ({
   user = null,
   messages,
   isTyping = false,
+  onEmailSubmit,
   onTyping,
   onSendMessage,
   theme,
@@ -201,6 +203,13 @@ export const SupportChatWidget = ({
     setEmailError(null);
   };
 
+  const handleResetEmail = () => {
+    localStorage.removeItem(STORAGE_KEY);
+    setEmail(null);
+    setEmailValue("");
+    setInternalMessages(defaultMessages);
+  };
+
   const handleSendMessage = async () => {
     const trimmedMessage = messageValue.trim();
 
@@ -247,6 +256,16 @@ export const SupportChatWidget = ({
             <div>
               <h3 className="sc-title">{mergedLabels.title}</h3>
               <p className="sc-subtitle">{mergedLabels.subtitle}</p>
+
+              {hasGuestEmail && (
+                <button
+                  type="button"
+                  className="sc-change-email"
+                  onClick={handleResetEmail}
+                >
+                  Change email
+                </button>
+              )}
             </div>
 
             <button
@@ -356,9 +375,13 @@ export const SupportChatWidget = ({
                 className={cn("sc-send-button", classNames?.sendButton)}
                 onClick={handleSendMessage}
                 disabled={!messageValue.trim() || isSending}
-                aria-label="Send message"
+                aria-label={isSending ? "Sending message" : "Send message"}
               >
-                {icons?.send ?? mergedLabels.sendButton}
+                {isSending ? (
+                  <span className="sc-send-spinner" aria-hidden="true" />
+                ) : (
+                  (icons?.send ?? mergedLabels.sendButton)
+                )}
               </button>
             </div>
           )}
